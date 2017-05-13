@@ -1,6 +1,6 @@
 <?php
-include 'db.php';
 session_start();
+include 'db.php';
 ?>
 <!DOCTYPE html>
 <!--
@@ -22,10 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>
-           Welcome to CreatorsHangout
-        </title>
+        <title> Register </title>
         <link rel="stylesheet" href="bootstrap.min.css">
+        <style>
+            input {
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         
@@ -41,41 +44,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 
                 <ul class="nav navbar-nav navbar-left">
                    
-                    <li class="active"> <a href="#"> Home </a> </li>
-                    <li> <a href="login.php"> Login </a> </li>
+                    <li> <a href="index.php"> Home </a> </li>
+                    <li class="active"> <a href="login.php"> Login </a> </li>
                     
                 </ul>
                 
             </div>
             
-        </nav>
+        </nav>      
+        
         
         <div class="container-fluid">
             
             <center>
-                
-                <?php
-                    
-                echo "<strong>";
-                    
-                    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                    if (strpos($url, "id=loggedout")) {
-                        session_destroy();
-                        echo "You've been logged out!";
-                    }
-                    
-                echo "</strong>";
-                
-                ?>                
-                <br><br>
-                
-                <h1>
-                    Content to be published!
-                </h1>
-                  
+            <h3> Please register to enjoy our services! </h3><br><br>
             </center>
-              
-        </div>  
+            
+            <center> 
+                <form method="POST" action="signup.php">
+
+                    <input type="text" name="username" placeholder="Username" required><br><br>
+                    <input type="password" name="password" placeholder="Password" required><br><br>
+                    <button type="submit" class="btn btn-default"> Register! </button>
+
+                </form>
+            </center>
+            
+        </div>
         
     </body>
 </html>

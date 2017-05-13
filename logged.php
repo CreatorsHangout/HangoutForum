@@ -1,5 +1,4 @@
 <?php
-include 'db.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -22,9 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>
-           Welcome to CreatorsHangout
-        </title>
+        <title> Welcome! </title>
         <link rel="stylesheet" href="bootstrap.min.css">
     </head>
     <body>
@@ -41,41 +38,41 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 
                 <ul class="nav navbar-nav navbar-left">
                    
-                    <li class="active"> <a href="#"> Home </a> </li>
-                    <li> <a href="login.php"> Login </a> </li>
+                    <li class="active"> <a href="index.php?id=loggedout"> Home </a> </li>
+                    
+                    <?php
+            
+                        if (isset($_SESSION['uid'])) {
+                            echo '<li> <a href="logout.php"> Logout </a> </li>';
+                        }
+                        
+                     ?>
+                    
                     
                 </ul>
                 
             </div>
             
         </nav>
-        
+
         <div class="container-fluid">
             
             <center>
-                
-                <?php
+            <?php
+            
+                if (isset($_SESSION['uid'])) {
                     
-                echo "<strong>";
+                    echo "<strong> Welcome, " . $_SESSION['uid'] . "</strong>";
+                    echo "<br> You'll upload stuffs here! ";
                     
-                    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                    if (strpos($url, "id=loggedout")) {
-                        session_destroy();
-                        echo "You've been logged out!";
-                    }
-                    
-                echo "</strong>";
+                } else {
+                    echo "You can't access this page!";
+                }
                 
-                ?>                
-                <br><br>
-                
-                <h1>
-                    Content to be published!
-                </h1>
-                  
+            ?>
             </center>
-              
-        </div>  
+            
+        </div>
         
     </body>
 </html>

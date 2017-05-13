@@ -1,5 +1,4 @@
 <?php
-include 'db.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -22,11 +21,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>
-           Welcome to CreatorsHangout
-        </title>
-        <link rel="stylesheet" href="bootstrap.min.css">
+        <title> CreatorsHangout's Login Page </title>
     </head>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        
+        input {
+            text-align: center;
+        }
+        
+        button[type=submit] {
+            color: black;
+        }
+        
+    </style>
     <body>
         
         <nav class="navbar navbar-default">
@@ -41,8 +49,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 
                 <ul class="nav navbar-nav navbar-left">
                    
-                    <li class="active"> <a href="#"> Home </a> </li>
-                    <li> <a href="login.php"> Login </a> </li>
+                    <li> <a href="index.php"> Home </a> </li>
+                    <li class="active"> <a href="login.php"> Login </a> </li>
                     
                 </ul>
                 
@@ -59,23 +67,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 echo "<strong>";
                     
                     $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-                    if (strpos($url, "id=loggedout")) {
-                        session_destroy();
-                        echo "You've been logged out!";
+                    if (strpos($url, "id=same")) {
+                        echo "The username exists on our system! Try again";
+                    } elseif (strpos($url, "id=registered")) {
+                        echo "Yay! You've been registered. You can now login... :)";
                     }
                     
                 echo "</strong>";
                 
-                ?>                
+                ?>                   
+                
+            
+                <h3>
+                    Welcome!
+                </h3><br>
+                
+            <form method="POST" action="redirect.php">
+                
+                <input type="text" name="username" required placeholder="Enter your username"><br><br>
+                <input type="password" name="password" required placeholder="Enter your password"><br><br>
+                <button type="submit" class="btn btn-default"> Login </button>
+                
+            </form>
+                
                 <br><br>
                 
-                <h1>
-                    Content to be published!
-                </h1>
-                  
+                <h3> Don't have an account? <a href="register.php"> Click me! </a> </h3>
+            
             </center>
-              
-        </div>  
+                
+        </div>
         
     </body>
 </html>

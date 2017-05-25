@@ -26,6 +26,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
            Welcome to CreatorsHangout
         </title>
         <link rel="stylesheet" href="bootstrap.min.css">
+        <link href="side-bar.css" rel="stylesheet">
+        <style>
+            
+            div.container {
+                box-shadow: 0 0 45px black;
+                width: 800px;
+                height: 400px;
+            }
+            
+            video::-internal-media-controls-download-button {
+                display: none;
+            }
+            video::-webkit-media-controls {
+                overflow: hidden !important
+            }
+            video::-webkit-media-controls-enclosure {
+                width: calc(100% + 32px);
+                margin-left: auto;
+            }
+            .overlay {
+                position:absolute;
+                top:0;
+                left:0;
+                z-index:1;
+            }            
+            
+        </style>
     </head>
     <body>
         
@@ -50,7 +77,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             
         </nav>
         
-        <div class="container-fluid">
+        <div class="container-fluid">         
             
             <center>
                 
@@ -70,12 +97,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <br><br>
                 
                 <h1>
-                    Content to be published!
+                    Welcome! 
                 </h1>
+                
+                <br><br>
+                
+                <div class="container">
+                    
+                    <h3> Featured contents of the Day! </h3>
+                    
+                    <br>
+                    
+                    <?php
+                    
+                        $dir    = './videos';
+                        $video_files = [];
+
+                        foreach(glob($dir.'/*.*') as $file) {
+                            $file_parts = pathinfo($file);
+                            if ($file_parts['extension'] == "mp4"){
+                                $video_files[] = $file;
+                            }
+                        }
+
+                        foreach($video_files as $video_file) {
+                            echo "<video autoplay width='500' height='240' oncontextmenu='return false' controls onclick='play()'>";
+                            echo "<source src=". $video_file ." type='video/mp4'>";
+                            echo "</video><br/>";
+                        }
+
+                    ?>
+                    
+                </div>
                   
             </center>
               
-        </div>  
+        </div>       
         
     </body>
 </html>

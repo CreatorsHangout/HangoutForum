@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$conn = mysqli_connect("localhost", 'root', '', 'creatorshangout');
+$conn = mysqli_connect("localhost", 'root', 'admin', 'creatorshangout');
 
 if (!$conn) {
     die ("Unable to make connection");
